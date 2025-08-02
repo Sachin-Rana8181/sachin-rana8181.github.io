@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Floating shapes */
+        .floating-shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape1 { width: 80px; height: 80px; top: 20%; left: 10%; animation-delay: 0s; }
+        .shape2 { width: 120px; height: 120px; top: 60%; right: 15%; animation-delay: 2s; }
+        .shape3 { width: 60px; height: 60px; bottom: 20%; left: 20%; animation-delay: 4s; }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-white {
+            background: white;
+        }
+
+        .section-light {
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .project-desc {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .project-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #764ba2;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            z-index: 1;
+            cursor: pointer;
+            background: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .close-modal:hover {
+            color: #333;
+            transform: scale(1.1);
+        }
+
+        .project-detail {
+            padding: 2rem;
+        }
+
+        .project-detail h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .project-detail .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .project-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .project-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .social-link {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Sachin Rana</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="floating-shape shape1"></div>
+        <div class="floating-shape shape2"></div>
+        <div class="floating-shape shape3"></div>
+        
+        <div class="hero-content">
+            <h1>Hello, I'm Sachin Rana</h1>
+            <p>MCA Graduate & Data Science Enthusiast</p>
+            <a href="#about" class="cta-button">Discover My Work</a>
+        </div>
+    </section>
+
+    <section id="about" class="section-white">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="profile-img">👨‍💻</div>
+                <div class="about-text">
+                    <p>I'm a passionate MCA graduate from University of Petroleum and Energy Studies (UPES) with a specialization in Data Science. With a strong CGPA of 8.45, I have developed expertise in programming, data analysis, and web development.</p>
+                    <br>
+                    <p>Based in Dehradun, Uttarakhand, I enjoy solving complex problems through code and data. I've solved 230+ problems on LeetCode and earned multiple badges for my consistency. My interests span across data science, web development, and competitive programming.</p>
+                    <br>
+                    <p>I believe in continuous learning and applying technology to solve real-world problems. When I'm not coding, you can find me exploring new algorithms or working on data analysis projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section-light">
+        <div class="container">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>Programming Languages</h3>
+                    <p>C, Core Java, Python, JavaScript, HTML, CSS, MySQL</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔧</div>
+                    <h3>Frameworks & Libraries</h3>
+                    <p>Flask, OpenCV, DeepFace</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h3>Tools & Technologies</h3>
+                    <p>VS Code, Power BI, Data Visualization</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎯</div>
+                    <h3>Core Concepts</h3>
+                    <p>OOP, DBMS, Operating Systems, Data Structures & Algorithms</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section-white">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalContent">
+                <!-- Project details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <section id="contact" class="section-light">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>your.email@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Your City, Country</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🔗</div>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <p><a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-link">linkedin.com/in/yourprofile</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🐙</div>
+                        <div>
+                            <h4>GitHub</h4>
+                            <p><a href="https://github.com/yourusername" target="_blank" class="social-link">github.com/yourusername</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Sachin Rana. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Portfolio Data (simulating backend data)
+        const portfolioData = {
+            projects: [
+                {
+                    id: 1,
+                    title: "Olympic Readiness Analysis",
+                    icon: "🏅",
+                    shortDesc: "A comprehensive data analysis of India's Olympic readiness across major cities",
+                    fullDesc: "Conducted a comparative analysis of India's Olympic readiness using Exploratory Data Analysis (EDA) and advanced data visualization techniques. Evaluated 10+ critical factors across 5 major cities including infrastructure, logistics, and economic feasibility. The analysis identified New Delhi as the most suitable host city, which aligns with India's official 2036 Olympic bid nomination.",
+                    technologies: ["Python", "Power BI", "Data Analysis", "EDA", "Data Visualization"],
+                    liveUrl: "https://github.com/Sachin-Rana8181/demo-repo",
+                    githubUrl: "https://github.com/Sachin-Rana8181/demo-repo",
+                    features: [
+                        "Comparative analysis across 5 major Indian cities",
+                        "Evaluation of 10+ critical infrastructure factors",
+                        "Advanced data visualization using Power BI",
+                        "EDA techniques for comprehensive insights",
+                        "Economic feasibility assessment",
+                        "Findings align with India's official 2036 Olympic bid"
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "Emotion Detection Web App",
+                    icon: "😊",
+                    shortDesc: "Real-time emotion detection using webcam and image upload with AI",
+                    fullDesc: "Developed a sophisticated real-time emotion detection web application featuring both webcam integration and image upload capabilities. Implemented advanced facial expression recognition using DeepFace and OpenCV libraries for accurate emotion classification. The application features a responsive, user-friendly frontend built with modern web technologies and a robust Flask backend.",
+                    technologies: ["Python", "Flask", "OpenCV", "DeepFace", "HTML", "CSS", "JavaScript", "Computer Vision"],
+                    liveUrl: "https://github.com/Sachin-Rana8181/demo-repo",
+                    githubUrl: "https://github.com/Sachin-Rana8181/demo-repo",
+                    features: [
+                        "Real-time emotion detection via webcam",
+                        "Image upload and processing functionality",
+                        "Advanced facial expression recognition with DeepFace",
+                        "OpenCV integration for image processing",
+                        "Responsive and intuitive user interface",
+                        "Flask backend for efficient request handling",
+                        "Accurate emotion classification algorithms",
+                        "Cross-platform compatibility"
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "LeetCode Problem Solving",
+                    icon: "💡",
+                    shortDesc: "230+ LeetCode problems solved with multiple badges and 3-star HackerRank rating",
+                    fullDesc: "Demonstrated strong problem-solving skills and algorithmic thinking through consistent practice on competitive programming platforms. Achieved significant milestones including solving 230+ LeetCode problems, earning LeetCode50 Days Badges for 2024 and 2025, and maintaining a 3-star rating on HackerRank. This showcases proficiency in data structures, algorithms, and optimization techniques.",
+                    technologies: ["C", "Java", "Python", "Data Structures", "Algorithms", "Problem Solving", "Optimization"],
+                    liveUrl: "https://leetcode.com/u/rana745506/",
+                    githubUrl: "https://github.com/Sachin-Rana8181/demo-repo",
+                    features: [
+                        "230+ LeetCode problems solved",
+                        "LeetCode50 Days Badge 2024 & 2025",
+                        "3-Star rating on HackerRank",
+                        "Strong foundation in Data Structures & Algorithms",
+                        "Consistent daily practice and improvement",
+                        "Multiple programming languages proficiency",
+                        "Optimization and time complexity analysis",
+                        "Problem-solving pattern recognition"
+                    ]
+                }
+            ],
+            socialLinks: {
+                linkedin: "https://linkedin.com/in/sachin-rana-549a6a327",
+                github: "https://github.com/Sachin-Rana8181/demo-repo",
+                email: "rana745506@gmail.com",
+                phone: "+91-8923398181"
+            }
+        };
+
+        // Load projects dynamically
+        function loadProjects() {
+            const projectsGrid = document.getElementById('projectsGrid');
+            projectsGrid.innerHTML = '';
+
+            portfolioData.projects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                projectCard.innerHTML = `
+                    <div class="project-img">${project.icon}</div>
+                    <div class="project-content">
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-desc">${project.shortDesc}</p>
+                        <a href="#" class="project-link" onclick="openProjectModal(${project.id})">View Details →</a>
+                    </div>
+                `;
+                projectsGrid.appendChild(projectCard);
+            });
+        }
+
+        // Open project modal
+        function openProjectModal(projectId) {
+            const project = portfolioData.projects.find(p => p.id === projectId);
+            if (!project) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="project-detail">
+                    <h2>${project.title}</h2>
+                    <p style="color: #666; font-size: 1.1rem; line-height: 1.6;">${project.fullDesc}</p>
+                    
+                    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #333;">Technologies Used</h3>
+                    <div class="tech-stack">
+                        ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                    </div>
+                    
+                    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #333;">Key Features</h3>
+                    <ul style="color: #666; line-height: 1.8;">
+                        ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                    
+                    <div class="project-links">
+                        <a href="${project.liveUrl}" target="_blank" class="project-btn btn-primary">View Live Demo</a>
+                        <a href="${project.githubUrl}" target="_blank" class="project-btn btn-secondary">View Code</a>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('projectModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Modal event listeners
+        document.querySelector('.close-modal').addEventListener('click', closeModal);
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Escape key to close modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const logo = document.querySelector('.logo');
+            
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                logo.style.color = '#333';
+                navLinks.forEach(link => {
+                    link.style.color = '#333';
+                });
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+                header.style.boxShadow = 'none';
+                logo.style.color = 'white';
+                navLinks.forEach(link => {
+                    link.style.color = 'white';
+                });
+            }
+        });
+
+        // Enhanced form submission with validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            // Basic validation
+            if (!name || !email || !message) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Simulate sending to backend
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                alert(`Thank you, ${name}! Your message has been sent successfully. I'll get back to you soon at ${email}.`);
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        // Email validation helper
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Initialize portfolio
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProjects();
+            
+            // Observe all cards and sections for animations
+            setTimeout(() => {
+                document.querySelectorAll('.skill-card, .project-card, .contact-item').forEach(el => {
+                    observer.observe(el);
+                });
+            }, 100);
+        });
+
+        // Update social links dynamically
+        function updateSocialLinks() {
+            const linkedinLink = document.querySelector('a[href*="linkedin"]');
+            const githubLink = document.querySelector('a[href*="github"]');
+            
+            if (linkedinLink) {
+                linkedinLink.href = portfolioData.socialLinks.linkedin;
+            }
+            if (githubLink) {
+                githubLink.href = portfolioData.socialLinks.github;
+            }
+        }
+
+        // Call updateSocialLinks when page loads
+        document.addEventListener('DOMContentLoaded', updateSocialLinks);
+    </script>
+</body>
+</html>

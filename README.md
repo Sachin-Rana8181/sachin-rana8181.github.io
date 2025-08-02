@@ -140,87 +140,7 @@ CSS hardware acceleration - Transform3d for smooth animations
 Lazy loading concepts for content revelation
 Debounced scroll events - Optimized scroll handling
 
-Browser Compatibility
 
-Fallbacks for modern CSS features
-Vendor prefixes where necessary
-Progressive enhancement approach
-Cross-browser tested selectors
-
-📁 File Structure
-index.html (Single File)
-├── HTML Structure (Lines 1-350)
-│   ├── Meta tags & SEO optimization
-│   ├── Navigation header
-│   ├── Hero section with floating shapes
-│   ├── About section with grid layout
-│   ├── Skills section with card grid
-│   ├── Projects section (dynamic)
-│   ├── Modal structure
-│   ├── Contact form & info
-│   └── Footer
-├── CSS Styles (Lines 350-750)
-│   ├── Reset & base styles
-│   ├── Header & navigation
-│   ├── Hero animations
-│   ├── Section styling
-│   ├── Grid layouts
-│   ├── Card components
-│   ├── Modal styling
-│   ├── Form styling
-│   ├── Animations & keyframes
-│   └── Media queries
-└── JavaScript Logic (Lines 750-966)
-    ├── Portfolio data object
-    ├── Dynamic project loading
-    ├── Modal functionality
-    ├── Form validation
-    ├── Smooth scrolling
-    ├── Scroll effects
-    └── Event listeners
-🧩 Key Code Functions
-Dynamic Project Loading
-javascriptfunction loadProjects() {
-    const projectsGrid = document.getElementById('projectsGrid');
-    portfolioData.projects.forEach(project => {
-        const projectCard = document.createElement('div');
-        // Dynamic HTML generation
-    });
-}
-Modal System
-javascriptfunction openProjectModal(projectId) {
-    const project = portfolioData.projects.find(p => p.id === projectId);
-    // Template literal HTML injection
-    document.getElementById('projectModal').style.display = 'block';
-}
-Form Validation
-javascriptfunction isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-🚀 Getting Started
-Prerequisites
-
-Modern web browser (Chrome, Firefox, Safari, Edge)
-Git (for local development)
-Text editor (VS Code recommended)
-
-Local Development
-
-Clone the repository
-bashgit clone https://github.com/Sachin-Rana8181/sachin-rana8181.github.io.git
-
-Navigate to project directory
-bashcd sachin-rana8181.github.io
-
-Open in VS Code
-bashcode .
-
-Live Preview
-
-Install "Live Server" extension in VS Code
-Right-click index.html → "Open with Live Server"
-Or simply open index.html in your browser
 
 
 
@@ -235,34 +155,7 @@ git push origin main
 
 Changes go live automatically via GitHub Pages!
 
-🎨 Customization
-Updating Personal Information
 
-Line 163: Change the hero title and subtitle
-Lines 175-179: Update the about me content
-Lines 320-350: Modify contact information
-Lines 425-500: Update project data in JavaScript
-
-Styling Modifications
-
-Colors: Modify CSS gradient values (lines 8-10)
-Fonts: Change font-family in the body selector
-Layout: Adjust grid layouts and spacing
-Animations: Customize keyframe animations
-
-Adding New Projects
-Add new project objects to the portfolioData.projects array:
-javascript{
-    id: 4,
-    title: "Your New Project",
-    icon: "🎯",
-    shortDesc: "Brief description",
-    fullDesc: "Detailed description...",
-    technologies: ["Tech1", "Tech2"],
-    liveUrl: "https://your-demo.com",
-    githubUrl: "https://github.com/your-repo",
-    features: ["Feature 1", "Feature 2"]
-}
 📞 Contact Information
 
 Email: rana745506@gmail.com
@@ -287,12 +180,6 @@ Location: Dehradun, Uttarakhand, India
 ✅ Edge
 ✅ Mobile browsers
 
-📱 Mobile Optimization
-
-Responsive breakpoints for all screen sizes
-Touch-friendly navigation and interactions
-Optimized images and content layout
-Fast loading performance
 
 🎯 Performance Features
 
@@ -301,16 +188,7 @@ Optimized CSS and JavaScript
 Smooth animations with hardware acceleration
 Efficient DOM manipulation
 
-📄 License
-This project is open source and available under the MIT License.
-🤝 Contributing
-Feel free to fork this repository and create your own portfolio! If you find any bugs or have suggestions:
 
-Fork the repository
-Create your feature branch
-Commit your changes
-Push to the branch
-Open a Pull Request
 
 🙏 Acknowledgments
 
